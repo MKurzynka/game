@@ -402,3 +402,18 @@
 	<iostream>
 	<string>
 
+1527037085 source:c:\users\kurzy\documents\github\rpg_game\main.cpp
+	<SFML/Graphics.hpp>
+	"TileMap.h"
+	"Player.h"
+
+1527157900 source:c:\users\kurzy\documents\github\rpg_game\src\player.cpp
+	"Player.h"
+	<iostream>
+
+1527035881 source:c:\users\kurzy\documents\github\rpg_game\src\tilemap.cpp
+	"TileMap.h"
+	<fstream>
+	<iostream>
+	<string>
+

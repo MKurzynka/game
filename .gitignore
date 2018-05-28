@@ -34,3 +34,8 @@ sprite_sheets
 *.exe
 *.out
 *.app
+
+# IDE Files
+*.cbp
+*.layout
+*.depend

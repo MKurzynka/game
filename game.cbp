@@ -13,14 +13,14 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="C:/SFML-2.4.2/include" />
+					<Add directory="C:/SFML/include" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
-					<Add library="C:/SFML-2.4.2/lib/libsfml-graphics-d.a" />
-					<Add library="C:/SFML-2.4.2/lib/libsfml-window-d.a" />
-					<Add library="C:/SFML-2.4.2/lib/libsfml-system-d.a" />
-					<Add directory="C:/SFML-2.4.2/lib" />
+					<Add library="C:/SFML/lib/libsfml-graphics-d.a" />
+					<Add library="C:/SFML/lib/libsfml-window-d.a" />
+					<Add library="C:/SFML/lib/libsfml-system-d.a" />
+					<Add directory="C:/SFML/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -30,28 +30,28 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="C:/SFML-2.4.2/include" />
+					<Add directory="C:/SFML/include" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="C:/SFML-2.4.2/lib/libsfml-graphics.a" />
-					<Add library="C:/SFML-2.4.2/lib/libsfml-window.a" />
-					<Add library="C:/SFML-2.4.2/lib/libsfml-system.a" />
-					<Add directory="C:/SFML-2.4.2/lib" />
+					<Add library="C:/SFML/lib/libsfml-graphics.a" />
+					<Add library="C:/SFML/lib/libsfml-window.a" />
+					<Add library="C:/SFML/lib/libsfml-system.a" />
+					<Add directory="C:/SFML/lib" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add directory="C:/SFML-2.4.2/include" />
+			<Add directory="C:/SFML/include" />
 		</Compiler>
 		<Linker>
-			<Add library="C:/SFML-2.4.2/lib/libsfml-graphics-s-d.a" />
-			<Add library="C:/SFML-2.4.2/lib/libsfml-window-s-d.a" />
-			<Add library="C:/SFML-2.4.2/lib/libsfml-system-s-d.a" />
-			<Add directory="C:/SFML-2.4.2/lib" />
+			<Add library="C:/SFML/lib/libsfml-graphics-s-d.a" />
+			<Add library="C:/SFML/lib/libsfml-window-s-d.a" />
+			<Add library="C:/SFML/lib/libsfml-system-s-d.a" />
+			<Add directory="C:/SFML/lib" />
 		</Linker>
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/TileMap.h" />

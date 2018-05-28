@@ -5,6 +5,7 @@ Player::Player()
 {
     //ctor
 }
+
 Player::Player(float p_x,float p_y, Texture& texture)
 {
 

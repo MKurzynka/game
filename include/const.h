@@ -1,7 +1,7 @@
 #ifndef CONST_H_INCLUDED
 #define CONST_H_INCLUDED
 
-#define WINDOW_SIZE 640
+#define WINDOW_SIZE 320
 #define FRAME_LIMIT 60
 #define TILE_SIZE 32
 #define N_TILES_IN_MAP 200

@@ -28,9 +28,6 @@ class Monster : public sf::Drawable
         IntRect rectSourceSprite{0, 0, 32, 32};
         Sprite sprite{texture, rectSourceSprite};
         const float monster_radius{20};
-        float hp{10};
-        float att;
-        float def;
         double homeRadius{60};
 
         bool aggroState{0};

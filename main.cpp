@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Monster.h"
 #include "const.h"
+#include "NPC.h"
 
 
 

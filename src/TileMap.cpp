@@ -146,7 +146,7 @@ void TileMap::updateMap()
         {
             //std::cout << mapVec[i][j].x <<" , ";
               //  std::cout << mapVec[i][j].y << std::endl;
-                this->mapSprite.setPosition(i * TILE_SIZE, j * TILE_SIZE);
+                //this->mapSprite.setPosition(i * TILE_SIZE, j * TILE_SIZE);
                 //this->mapSprite.setTextureRect(sf::IntRect(mapVec[i][j].x * TILE_SIZE, mapVec[i][j].y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
                 this->spriteVector[i + j * N_TILES_IN_MAP].setPosition((i + vx) * TILE_SIZE, (j + vy) * TILE_SIZE);
                // std::cout << mapVec[i][j].x <<","<< mapVec[i][j].y <<std::endl;

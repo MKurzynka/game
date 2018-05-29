@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include "include/TileMap.h"
-#include "include/Player.h"
+#include "TileMap.h"
+#include "Player.h"
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(640, 640), "Tibia v2");

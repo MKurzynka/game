@@ -50,11 +50,7 @@
 		<Linker>
 			<Add directory="C:/SFML-2.4.2/lib" />
 		</Linker>
-		<Unit filename="include/Player.h" />
-		<Unit filename="include/TileMap.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Player.cpp" />
-		<Unit filename="src/TileMap.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

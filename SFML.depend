@@ -1,4 +1,4 @@
-# depslib dependency file v1.0
+-# depslib dependency file v1.0
 1527538419 source:c:\users\klaudia\documents\github\rpg_game\main.cpp
 	<SFML/Graphics.hpp>
 	"TileMap.h"
@@ -416,4 +416,3 @@
 	<fstream>
 	<iostream>
 	<string>
-

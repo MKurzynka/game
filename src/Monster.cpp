@@ -28,21 +28,21 @@ void Monster::aggro(double deltaVx, double deltaVy)
 
        double aggroDist;
 
-       aggroDist = std::sqrt(((monsterCurrentPosition.x - 160) * (monsterCurrentPosition.x - 160))
-                             + ((monsterCurrentPosition.y - 160) * (monsterCurrentPosition.y - 160)));
+       aggroDist = std::sqrt(((monsterCurrentPosition.x - WINDOW_SIZE / 2) * (monsterCurrentPosition.x - WINDOW_SIZE / 2))
+                             + ((monsterCurrentPosition.y - WINDOW_SIZE / 2) * (monsterCurrentPosition.y - WINDOW_SIZE / 2)));
        if(aggroDist < aggroRadius)
        {
            aggroState = 1;
            moveTimer++;
-           if(fabs(monsterCurrentPosition.x - 160) < 1)
+           if(fabs(monsterCurrentPosition.x - WINDOW_SIZE / 2) < 1)
             aggro_vel.x = 0;
             else
-             aggro_vel.x = -(monsterCurrentPosition.x - 160) / fabs((monsterCurrentPosition.x - 160)) * 1;
+             aggro_vel.x = -(monsterCurrentPosition.x - WINDOW_SIZE / 2) / fabs((monsterCurrentPosition.x - WINDOW_SIZE / 2)) * 1;
 
-           if(fabs(monsterCurrentPosition.y - 160) < 1)
+           if(fabs(monsterCurrentPosition.y - WINDOW_SIZE / 2) < 1)
             aggro_vel.y = 0;
             else
-            aggro_vel.y = -(monsterCurrentPosition.y - 160) / fabs((monsterCurrentPosition.y - 160)) * 1;
+            aggro_vel.y = -(monsterCurrentPosition.y - WINDOW_SIZE / 2) / fabs((monsterCurrentPosition.y - WINDOW_SIZE / 2)) * 1;
        }
        else
        {
@@ -53,10 +53,10 @@ void Monster::aggro(double deltaVx, double deltaVy)
        //std::cout << monsterCurrentPosition.x << std::endl;
        //std::cout << aggro_vel.x << std::endl;
        //std::cout << deltaVx << std::endl;
-       monsterCurrentPosition.x += aggro_vel.x + deltaVx * 32;
-       monsterCurrentPosition.y += aggro_vel.y + deltaVy * 32;
-       monster_position.x = monster_position.x + deltaVx * 32;
-       monster_position.y = monster_position.y + deltaVy * 32;
+       monsterCurrentPosition.x += aggro_vel.x + deltaVx * TILE_SIZE;
+       monsterCurrentPosition.y += aggro_vel.y + deltaVy * TILE_SIZE;
+       monster_position.x = monster_position.x + deltaVx * TILE_SIZE;
+       monster_position.y = monster_position.y + deltaVy * TILE_SIZE;
        //std::cout << aggro_vel.x << std::endl;
        if(aggro_vel.x < 0)
        {
@@ -111,19 +111,19 @@ void Monster::randomWalk()
 {
     if(!aggroState)
     {
-    if(monsterCurrentPosition.x - monster_position.x > 40)
+    if(monsterCurrentPosition.x - monster_position.x > homeRadius)
     {
         randomWalk_vel.x = -1;
         homeComming = 1;
-    }else if(monsterCurrentPosition.x - monster_position.x < -40)
+    }else if(monsterCurrentPosition.x - monster_position.x < -homeRadius)
     {
         randomWalk_vel.x = 1;
         homeComming = 1;
-    }else if(monsterCurrentPosition.y - monster_position.y > 40)
+    }else if(monsterCurrentPosition.y - monster_position.y > homeRadius)
     {
         randomWalk_vel.y = -1;
         homeComming = 1;
-    }else if(monsterCurrentPosition.y - monster_position.y < -40)
+    }else if(monsterCurrentPosition.y - monster_position.y < -homeRadius)
     {
         randomWalk_vel.y = 1;
         homeComming = 1;
@@ -222,13 +222,18 @@ void Monster::randomWalk()
     }
     //std::cout << randomWalk_vel.x << std::endl;
 }
+sf::Vector2f Monster::getPosition()
+{
+    Vector2f position{monsterCurrentPosition.x, monsterCurrentPosition.y};
+    return position;
+}
 
 void Monster::update(double deltaVx, double deltaVy, double vx, double vy)
 {
     moveTimer > 200 ? moveTimer = 1 : moveTimer++;
     aggro(deltaVx, deltaVy);
     randomWalk();
-    std::cout << monster_position.x << std::endl;
+    //std::cout << monster_position.x << std::endl;
     monster_shape.setPosition(monsterCurrentPosition.x + randomWalk_vel.x,monsterCurrentPosition.y + randomWalk_vel.y);
     sprite.setPosition(monsterCurrentPosition.x + randomWalk_vel.x, monsterCurrentPosition.y + randomWalk_vel.y);
 

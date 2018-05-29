@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <SFML/Graphics.hpp>
+#include "const.h"
 using namespace sf;
 
 class Player : public sf::Drawable
@@ -28,7 +29,7 @@ class Player : public sf::Drawable
         float bottom();
 
         float hp;
-        float att;
+        float att{20};
         float def;
 
 

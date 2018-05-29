@@ -3,9 +3,13 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "Monster.h"
+#include "const.h"
+
+
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(320, 320), "Tibia v2");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Tibia v2");
     TileMap tileMap;
     tileMap.loadSpriteSheets();
     sf::Texture texture;
@@ -13,11 +17,11 @@ int main()
     	texture.loadFromFile("sprites2.png");
         //std::cout << "Unable to load texture" << std::endl;
 
-    Player player(320 / 2, 320 / 2, texture);
+    Player player(WINDOW_SIZE / 2, WINDOW_SIZE / 2, texture);
     Monster monster(50, 60, texture);
     Monster monster2(100, 60, texture);
     Monster monster3(70, 10, texture);
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(FRAME_LIMIT);
     while (window.isOpen())
     {
         sf::Event event;

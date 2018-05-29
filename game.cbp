@@ -53,9 +53,11 @@
 			<Add library="C:/SFML/lib/libsfml-system-s-d.a" />
 			<Add directory="C:/SFML/lib" />
 		</Linker>
+		<Unit filename="include/Monster.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/TileMap.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Monster.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/TileMap.cpp" />
 		<Extensions>

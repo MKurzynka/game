@@ -92,10 +92,7 @@ void Player::update()
     }
     if(sf::Keyboard::isKeyPressed(Keyboard::Key::Down))
     {
-        //if(bottom() < 600)
-           // player_velocity.y = 2;
-        //else
-            player_velocity.y = 0;
+        player_velocity.y = 0;
         if(moveTimer % 3 == 0)
         {
         if(rectSourceSprite.left == 64)
@@ -105,6 +102,10 @@ void Player::update()
         rectSourceSprite.top = 0;
         sprite.setTextureRect(rectSourceSprite);
         }
+
+    }
+    if(sf::Keyboard::isKeyPressed(Keyboard::Key::Space))
+    {
 
     }
 

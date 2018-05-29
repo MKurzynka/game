@@ -40,3 +40,5 @@ sprite_sheets
 *.layout
 *.depend
 game.layout
+game.layout
+game.cbp

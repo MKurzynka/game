@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
-#include "TileMap.h"
-#include "Player.h"
+#include "include/TileMap.h"
+#include "include/Player.h"
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(320, 320), "Tibia v2");
+    sf::RenderWindow window(sf::VideoMode(640, 640), "Tibia v2");
     TileMap tileMap;
     tileMap.loadSpriteSheets();
     sf::Texture texture;

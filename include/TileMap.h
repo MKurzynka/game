@@ -13,6 +13,10 @@ class TileMap : public sf::Drawable
         void loadMapFromTxt();
         void updateMap();
         virtual ~TileMap();
+        double getVx();
+        double getVy();
+        double getDeltaVx();
+        double getDeltaVy();
 
     protected:
 
@@ -20,6 +24,7 @@ class TileMap : public sf::Drawable
         int mapTimer{0};
         int positionLeft{0}, positionRight{0}, positionTop{0}, positionBottom{0};
         double vx{0}, vy{0};
+        double vxOld{0}, vyOld{0};
         sf::Vector2i mapVec[20][20];
         sf::Vector2i loadCounter = sf::Vector2i(0,0);
         sf::Texture mapTexture;

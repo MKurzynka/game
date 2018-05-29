@@ -106,15 +106,18 @@ void TileMap::updateMap()
         mapTimer = 0;
 
 
+        vxOld = vx;
+        vyOld = vy;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
+        //vxOld = vx;
         positionLeft++;
         vx = -positionRight * 0.1 + positionLeft * 0.1;
 
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-
+        //vxOld = vx;
         positionRight++;
         vx = positionLeft * 0.1  - positionRight * 0.1;
 
@@ -122,12 +125,14 @@ void TileMap::updateMap()
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
+        //vyOld = vy;
         positionTop++;
         vy = -positionBottom * 0.1 + positionTop * 0.1;
 
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
+        //vyOld = vy;
        positionBottom++;
         vy = positionTop * 0.1  - positionBottom * 0.1;
     }
@@ -145,8 +150,22 @@ void TileMap::updateMap()
         }
     }
 }
-
-
+double TileMap::getVx()
+{
+    return vx;
+}
+double TileMap::getVy()
+{
+    return vy;
+}
+double TileMap::getDeltaVx()
+{
+    return vx - vxOld;
+}
+double TileMap::getDeltaVy()
+{
+    return vy - vyOld;
+}
 TileMap::~TileMap()
 {
     //dtor

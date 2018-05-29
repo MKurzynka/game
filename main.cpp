@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "TileMap.h"
 #include "Player.h"
+#include "Monster.h"
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(320, 320), "Tibia v2");
@@ -12,8 +14,10 @@ int main()
         //std::cout << "Unable to load texture" << std::endl;
 
     Player player(320 / 2, 320 / 2, texture);
-
-    window.setFramerateLimit(60);
+    Monster monster(50, 60, texture);
+    Monster monster2(100, 60, texture);
+    Monster monster3(70, 10, texture);
+    window.setFramerateLimit(30);
     while (window.isOpen())
     {
         sf::Event event;
@@ -24,10 +28,17 @@ int main()
         }
         tileMap.updateMap();
         player.update();
+        monster.update(tileMap.getDeltaVx(), tileMap.getDeltaVy(), tileMap.getVx(), tileMap.getVy());
+       monster2.update(tileMap.getDeltaVx(), tileMap.getDeltaVy(), tileMap.getVx(), tileMap.getVy());
+       monster3.update(tileMap.getDeltaVx(), tileMap.getDeltaVy(), tileMap.getVx(), tileMap.getVy());
        window.draw(tileMap);
        window.draw(player);
+       window.draw(monster);
+       window.draw(monster2);
+       window.draw(monster3);
        window.display();
         window.clear();
+
 
     }
 

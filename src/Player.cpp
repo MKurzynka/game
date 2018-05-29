@@ -15,7 +15,7 @@ Player::Player(float p_x,float p_y, Texture& texture)
     player_shape.setOrigin(this->player_radius, this->player_radius);
     //sprite.scale(sf::Vector2f(0.1,0.1));
 
-    sprite.setPosition(p_x - 30, p_y - 30);
+    sprite.setPosition(p_x, p_y);
     //sprite.setOrigin(player_radius, player_radius);
     sprite.setTexture(texture);
 
@@ -61,7 +61,6 @@ void Player::update()
         //else
             player_velocity.x = 0;
         if(moveTimer % 3 == 0)
-
         {
         if(rectSourceSprite.left == 64)
            rectSourceSprite.left = 0;

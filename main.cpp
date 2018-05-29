@@ -1,9 +1,16 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "TileMap.h"
 #include "Player.h"
+#include "Monster.h"
+#include "const.h"
+#include "NPC.h"
+
+
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(640, 640), "Tibia v2");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Tibia v2");
     TileMap tileMap;
     tileMap.loadSpriteSheets();
     sf::Texture texture;
@@ -11,9 +18,11 @@ int main()
     	texture.loadFromFile("sprites2.png");
         //std::cout << "Unable to load texture" << std::endl;
 
-    Player player(320 / 2, 320 / 2, texture);
-
-    window.setFramerateLimit(60);
+    Player player(WINDOW_SIZE / 2, WINDOW_SIZE / 2, texture);
+    Monster monster(50, 60, texture);
+    Monster monster2(100, 60, texture);
+    Monster monster3(70, 10, texture);
+    window.setFramerateLimit(FRAME_LIMIT);
     while (window.isOpen())
     {
         sf::Event event;
@@ -24,10 +33,17 @@ int main()
         }
         tileMap.updateMap();
         player.update();
+        monster.update(tileMap.getDeltaVx(), tileMap.getDeltaVy(), tileMap.getVx(), tileMap.getVy());
+       monster2.update(tileMap.getDeltaVx(), tileMap.getDeltaVy(), tileMap.getVx(), tileMap.getVy());
+       monster3.update(tileMap.getDeltaVx(), tileMap.getDeltaVy(), tileMap.getVx(), tileMap.getVy());
        window.draw(tileMap);
        window.draw(player);
+       window.draw(monster);
+       window.draw(monster2);
+       window.draw(monster3);
        window.display();
         window.clear();
+
 
     }
 

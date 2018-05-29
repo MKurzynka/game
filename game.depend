@@ -432,13 +432,14 @@
 1527036883 c:\users\kurzy\desktop\infa\game\game\include\player.h
 	<SFML/Graphics.hpp>
 
-1527614275 source:c:\users\kurzy\documents\github\rpg_game\main.cpp
+1527631373 source:c:\users\kurzy\documents\github\rpg_game\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"TileMap.h"
 	"Player.h"
 	"Monster.h"
 	"const.h"
+	"NPC.h"
 
 1527614634 c:\users\kurzy\documents\github\rpg_game\include\tilemap.h
 	<fstream>
@@ -455,7 +456,7 @@
 	"Player.h"
 	<iostream>
 
-1527629734 source:c:\users\kurzy\documents\github\rpg_game\src\tilemap.cpp
+1527631280 source:c:\users\kurzy\documents\github\rpg_game\src\tilemap.cpp
 	"TileMap.h"
 	<fstream>
 	<iostream>
@@ -465,7 +466,7 @@
 	"Monster.h"
 	<iostream>
 
-1527615613 c:\users\kurzy\documents\github\rpg_game\include\monster.h
+1527631545 c:\users\kurzy\documents\github\rpg_game\include\monster.h
 	<math.h>
 	<time.h>
 	<stdlib.h>
@@ -473,5 +474,12 @@
 	<TileMap.h>
 	"const.h"
 
-1527629542 c:\users\kurzy\documents\github\rpg_game\include\const.h
+1527631112 c:\users\kurzy\documents\github\rpg_game\include\const.h
+
+1527631468 source:c:\users\kurzy\documents\github\rpg_game\src\npc.cpp
+	"NPC.h"
+
+1527631423 c:\users\kurzy\documents\github\rpg_game\include\npc.h
+	<vector>
+	<Monster.h>
 

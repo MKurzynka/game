@@ -9,15 +9,12 @@ TileMap::TileMap()
     //ctor
 }
 
-void TileMap::loadSpriteSheets()
+void TileMap::loadSpriteSheets(std::string filePath)
 {
-    std::string mapLocation;
-    std::ifstream openFile("sprite_sheets/otsp_tiles_01.png");
+    std::ifstream openFile(filePath);
     if(openFile.is_open())
     {
-        this->mapTexture.loadFromFile("sprite_sheets/otsp_tiles_01.png");
-        //this->tileImage.loadFromFile("sprite_sheets/otsp_tiles_01.png");
-        int width{SPRITE_WIDTH}, height{SPRITE_HEIGHT};
+        this->mapTexture.loadFromFile(filePath);
         this->spriteVector.resize(N_TILES_IN_MAP * N_TILES_IN_MAP);
         this->mapSprite.setTexture(mapTexture);
 
@@ -25,24 +22,8 @@ void TileMap::loadSpriteSheets()
         {
             this->spriteVector[i].setTexture(mapTexture);
         }
-        this->tileVector.resize(width * height);
-        for(int i = 0; i < height; i++)
-        {
-            for(int j = 0; j < width; j++)
-            {
 
-                this->tileVector[16 * i + j].create(TILE_SIZE, TILE_SIZE);
-                //this->tileVector[16 * i + j].copy(this->tileImage,
-                  //                                 0, 0, sf::IntRect(j * 64, i * 64, (j + 1) * 64, (i + 1) * 64));
-         this->tileVector[16 * i + j].copy(this->tileImage,
-                                                0, 0, sf::IntRect(j * TILE_SIZE, i * TILE_SIZE,  TILE_SIZE, TILE_SIZE));
-            }
 
-        }
-        /*for(int i = 0; i < 10; i++)
-        {
-            this->mapTexture.update(tileVector[0], i * 64, 64);
-        }*/
         std::cout << "Succesfully loaded map sprites" << std::endl;
     }
     else
@@ -50,12 +31,11 @@ void TileMap::loadSpriteSheets()
         std::cout << "Failed to load map sprites!" << std::endl;
     }
     openFile.close();
-    //this->s
 }
-void TileMap::loadMapFromTxt()
+void TileMap::loadMapFromTxt(std::string filePath)
 {
-   //std::ifstream openFile("sprite_sheets/firstLayer.txt");
-    std::ifstream openFile("sprite_sheets/first_layer.txt");
+
+    std::ifstream openFile(filePath);
     if(openFile.is_open())
     {
         std::cout << "Succesfully loaded first layer map matrix" << std::endl;
@@ -100,7 +80,6 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
             //std::cout << mapVec[i][j].y << std::endl;
         }
     }
-    //target.draw(player_shape, states);
 
 }
 void TileMap::updateMap()
@@ -114,14 +93,13 @@ void TileMap::updateMap()
         vyOld = vy;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        //vxOld = vx;
+
         positionLeft++;
         vx = -positionRight * PLAYER_SPEED_FACTOR + positionLeft * PLAYER_SPEED_FACTOR;
 
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        //vxOld = vx;
         positionRight++;
         vx = positionLeft * PLAYER_SPEED_FACTOR  - positionRight * PLAYER_SPEED_FACTOR;
 
@@ -129,14 +107,12 @@ void TileMap::updateMap()
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        //vyOld = vy;
         positionTop++;
         vy = -positionBottom * PLAYER_SPEED_FACTOR + positionTop * PLAYER_SPEED_FACTOR;
 
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        //vyOld = vy;
        positionBottom++;
         vy = positionTop * PLAYER_SPEED_FACTOR  - positionBottom * PLAYER_SPEED_FACTOR;
     }
@@ -144,14 +120,8 @@ void TileMap::updateMap()
     {
         for(int i = 0; i < N_TILES_IN_MAP; i++)
         {
-            //std::cout << mapVec[i][j].x <<" , ";
-              //  std::cout << mapVec[i][j].y << std::endl;
-                //this->mapSprite.setPosition(i * TILE_SIZE, j * TILE_SIZE);
-                //this->mapSprite.setTextureRect(sf::IntRect(mapVec[i][j].x * TILE_SIZE, mapVec[i][j].y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
-                this->spriteVector[i + j * N_TILES_IN_MAP].setPosition((i + vx) * TILE_SIZE, (j + vy) * TILE_SIZE);
-               // std::cout << mapVec[i][j].x <<","<< mapVec[i][j].y <<std::endl;
-               this->spriteVector[i + j * N_TILES_IN_MAP].setTextureRect(sf::IntRect((mapVec[i][j].x - 1) * TILE_SIZE, (mapVec[i][j].y - 1)* TILE_SIZE, TILE_SIZE, TILE_SIZE));
-            //}
+            this->spriteVector[i + j * N_TILES_IN_MAP].setPosition((i + vx) * TILE_SIZE, (j + vy) * TILE_SIZE);
+            this->spriteVector[i + j * N_TILES_IN_MAP].setTextureRect(sf::IntRect((mapVec[i][j].x - 1) * TILE_SIZE, (mapVec[i][j].y - 1)* TILE_SIZE, TILE_SIZE, TILE_SIZE));
         }
     }
 }

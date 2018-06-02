@@ -10,8 +10,8 @@ class TileMap : public sf::Drawable
 {
     public:
         TileMap();
-        void loadSpriteSheets();
-        void loadMapFromTxt();
+        void loadSpriteSheets(std::string filePath);
+        void loadMapFromTxt(std::string filePath);
         void updateMap();
         virtual ~TileMap();
         double getVx();
@@ -30,8 +30,6 @@ class TileMap : public sf::Drawable
         sf::Vector2i loadCounter = sf::Vector2i(0,0);
         sf::Texture mapTexture;
         sf::Sprite mapSprite;
-        sf::Image tileImage;
-        std::vector<sf::Image> tileVector;
         std::vector<sf::Sprite> spriteVector;
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

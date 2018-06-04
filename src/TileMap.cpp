@@ -82,6 +82,10 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
     }
 
 }
+unsigned int TileMap::getDirection()
+{
+    return static_cast<unsigned int>(direction);
+}
 void TileMap::updateMap()
 {
     mapTimer++;
@@ -93,13 +97,14 @@ void TileMap::updateMap()
         vyOld = vy;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-
+        direction = Left;
         positionLeft++;
         vx = -positionRight * PLAYER_SPEED_FACTOR + positionLeft * PLAYER_SPEED_FACTOR;
 
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
+        direction = Right;
         positionRight++;
         vx = positionLeft * PLAYER_SPEED_FACTOR  - positionRight * PLAYER_SPEED_FACTOR;
 
@@ -107,13 +112,15 @@ void TileMap::updateMap()
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
+        direction = Up;
         positionTop++;
         vy = -positionBottom * PLAYER_SPEED_FACTOR + positionTop * PLAYER_SPEED_FACTOR;
 
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-       positionBottom++;
+        direction = Down;
+        positionBottom++;
         vy = positionTop * PLAYER_SPEED_FACTOR  - positionBottom * PLAYER_SPEED_FACTOR;
     }
     for(int j = 0; j < N_TILES_IN_MAP; j++)

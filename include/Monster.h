@@ -15,6 +15,11 @@ class Monster : public sf::Drawable
         Monster();
         Monster(float p_x, float p_y, Texture& texture);
         void update(double deltaVx, double deltaVy, double vx, double vy);
+        double getHp();
+        Sprite getSprite() const;
+        sf::CircleShape getMonsterShape() const;
+        void gotDMG(double dmg);
+        bool isDead();
         Vector2f getPosition();
         virtual ~Monster();
 
@@ -22,17 +27,19 @@ class Monster : public sf::Drawable
 
     private:
         CircleShape monster_shape;
+        double hp{10};
+        int dir{0}, h{0};
         int moveTimer{0};
         int aggroRadius{400};
         Texture texture;
         IntRect rectSourceSprite{0, 0, 32, 32};
         Sprite sprite{texture, rectSourceSprite};
-        const float monster_radius{20};
+        float monster_radius{15};
         double homeRadius{60};
 
         bool aggroState{0};
         bool homeComming{0};
-        bool isDead{0};
+
 
         void randomWalk();
         void aggro(double vx, double vy);

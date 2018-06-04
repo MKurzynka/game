@@ -53,19 +53,27 @@
 			<Add library="C:/SFML/lib/libsfml-system-s-d.a" />
 			<Add directory="C:/SFML/lib" />
 		</Linker>
+		<Unit filename="include/Combat.h" />
+		<Unit filename="include/Fireball.h" />
+		<Unit filename="include/Iceball.h" />
 		<Unit filename="include/Monster.h" />
 		<Unit filename="include/NPC.h" />
 		<Unit filename="include/ObstMap.h" />
 		<Unit filename="include/Peasant.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/Projectile.h" />
 		<Unit filename="include/TileMap.h" />
 		<Unit filename="include/const.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Combat.cpp" />
+		<Unit filename="src/Fireball.cpp" />
+		<Unit filename="src/Iceball.cpp" />
 		<Unit filename="src/Monster.cpp" />
 		<Unit filename="src/NPC.cpp" />
 		<Unit filename="src/ObstMap.cpp" />
 		<Unit filename="src/Peasant.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/Projectile.cpp" />
 		<Unit filename="src/TileMap.cpp" />
 		<Extensions>
 			<code_completion />

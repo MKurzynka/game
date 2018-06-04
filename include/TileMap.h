@@ -18,6 +18,7 @@ class TileMap : public sf::Drawable
         double getVy();
         double getDeltaVx();
         double getDeltaVy();
+        unsigned int getDirection();
 
     protected:
 
@@ -31,6 +32,8 @@ class TileMap : public sf::Drawable
         sf::Texture mapTexture;
         sf::Sprite mapSprite;
         std::vector<sf::Sprite> spriteVector;
+        enum facingDirection{Up, Right, Down, Left};
+        enum facingDirection direction{Down};
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

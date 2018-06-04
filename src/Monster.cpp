@@ -3,25 +3,54 @@
 
 Monster::Monster()
 {
+    std::cout << "monster" << std::endl;
 
 }
 Monster::Monster(float p_x, float p_y, Texture& texture)
 {
+    std::cout << "monster" << std::endl;
     monster_position.x = p_x;
     monster_position.y = p_y;
     monster_shape.setPosition(p_x, p_y);
     monster_shape.setRadius(this->monster_radius);
     monster_shape.setFillColor(sf::Color::Blue);
     monster_shape.setOrigin(this->monster_radius, this->monster_radius);
-    sprite.setPosition(p_x, p_y);
+    sprite.setPosition(p_x - monster_radius, p_y - monster_radius);
     sprite.setTexture(texture);
     srand(time(NULL));
 }
 
+Sprite Monster::getSprite() const
+{
+    return sprite;
+}
+
 void Monster::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target.draw(sprite, states);
+
+    target.draw(monster_shape, states);
 }
+
+void Monster::gotDMG(double dmg)
+{
+    hp = hp - dmg;
+}
+
+double Monster::getHp()
+{
+    return hp;
+}
+
+bool Monster::isDead()
+{
+    return (hp <= 0) ? 1 : 0;
+}
+
+sf::CircleShape Monster::getMonsterShape() const
+{
+    return monster_shape;
+}
+
 void Monster::aggro(double deltaVx, double deltaVy)
 {
        monsterCurrentPosition = monster_shape.getPosition();
@@ -185,7 +214,7 @@ void Monster::randomWalk()
     }
     if(moveTimer % 40 == 0 && !aggroState)
     {
-        int dir, h;
+
         h = rand();
         dir = h % 5;
         if(dir == 0)
@@ -222,6 +251,7 @@ void Monster::randomWalk()
     }
     //std::cout << randomWalk_vel.x << std::endl;
 }
+
 sf::Vector2f Monster::getPosition()
 {
     Vector2f position{monsterCurrentPosition.x, monsterCurrentPosition.y};
@@ -238,6 +268,7 @@ void Monster::update(double deltaVx, double deltaVy, double vx, double vy)
     sprite.setPosition(monsterCurrentPosition.x + randomWalk_vel.x, monsterCurrentPosition.y + randomWalk_vel.y);
 
 }
+
 Monster::~Monster()
 {
     //dtor

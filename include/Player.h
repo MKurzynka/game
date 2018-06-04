@@ -2,6 +2,11 @@
 #define PLAYER_H
 #include <SFML/Graphics.hpp>
 #include "const.h"
+#include <iostream>
+#include "Combat.h"
+#include "Projectile.h"
+
+
 using namespace sf;
 
 class Player : public sf::Drawable
@@ -9,12 +14,14 @@ class Player : public sf::Drawable
     public:
         Player();
         Player(float p_x, float p_y, Texture& texture);
-        void update();
+        void update(double vx, double vy,  unsigned int direction, Combat& combat, sf::Texture& projectileTexture);
         virtual ~Player();
 
     protected:
 
     private:
+        unsigned int coolDownTime{0};
+        unsigned int fireballCoolDownTime{0};
         CircleShape player_shape;
         int moveTimer{0};
         Texture texture;

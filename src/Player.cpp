@@ -16,13 +16,47 @@ Player::Player(float p_x,float p_y, Texture& texture)
     sprite.setTexture(texture);
 
 }
-
+void Player::setNpc(NPC* npc)
+{
+    p_npc = npc;
+}
+float Player::getPlayerMagicAttack()
+{
+    return magicAttack;
+}
+double Player::nextLvlExp(int lvl)
+{
+    return 10 + 200 * tan(level * PI / (LEVEL_CAP + 1)/2);
+}
+void Player::lvlUp()
+{
+    if(level < LEVEL_CAP)
+    {
+        double lvlExp;
+        lvlExp = nextLvlExp(level);
+        if(experience > lvlExp)
+        {
+            std::cout<<experience<<std::endl;
+            std::cout<<"LVL UP!!!"<<std::endl;
+            level += 1;
+            magicAttack *= MAGIC_ATTACK_ICREMENT;
+            coolDownReduction *= COOLDOWN_TIME_DECREMENT;
+            std::cout<<nextLvlExp(level)<<std::endl;
+        }
+    }
+}
+void Player::addExp(double gainedExp)
+{
+    experience += gainedExp;
+}
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(sprite, states);
 }
 void Player::update(double vx, double vy, unsigned int direction, Combat& combat, sf::Texture& projectileTexture)
 {
+    lvlUp();
+
     moveTimer ++;
     if(moveTimer > 200)
         moveTimer = 0;
@@ -37,17 +71,19 @@ void Player::update(double vx, double vy, unsigned int direction, Combat& combat
     player_velocity.y = 0;
     if(sf::Keyboard::isKeyPressed(Keyboard::Key::Space) && coolDownTime == 0)
     {
-        coolDownTime = 10;
-        std::cout<< "spacja" << std::endl;
-        Projectile projectile(WINDOW_SIZE / 2, WINDOW_SIZE / 2, direction, projectileTexture, 6, 20, 11, 0, 11, 11);
+        coolDownTime = PROJECTILE_COOLDOWN * coolDownReduction;
+        //std::cout<< "spacja" << std::endl;
+        Projectile projectile(WINDOW_SIZE / 2, WINDOW_SIZE / 2, direction, projectileTexture, magicAttack * PROJECTILE_ATTACK, PROJECTILE_SPEED, PROJECTILE_AOE, 11, 0, 11, 11);
+        projectile.setNpc(p_npc);
         combat.addProjectile(projectile);
     }
 
     if(sf::Keyboard::isKeyPressed(Keyboard::Key::V) && fireballCoolDownTime == 0)
     {
-        fireballCoolDownTime = 30;
-        std::cout<< "fireball" << std::endl;
-        Fireball fireball(WINDOW_SIZE / 2, WINDOW_SIZE / 2, direction, projectileTexture, 10, 3, 13, 9, 13, 11);
+        fireballCoolDownTime = FIREBALL_COOLDOWN * coolDownReduction;
+        //std::cout<< "fireball" << std::endl;
+        Fireball fireball(WINDOW_SIZE / 2, WINDOW_SIZE / 2, direction, projectileTexture, magicAttack * FIREBALL_ATTACK, FIREBALL_SPEED, FIREBALL_AOE, 13, 9, 13, 11);
+        fireball.setNpc(p_npc);
         combat.addFireball(fireball);
     }
     if(sf::Keyboard::isKeyPressed(Keyboard::Key::Left))

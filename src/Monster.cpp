@@ -1,14 +1,15 @@
 #include "Monster.h"
 #include <iostream>
+#include "Player.h"
 
 Monster::Monster()
 {
-    std::cout << "monster" << std::endl;
+    //std::cout << "monster" << std::endl;
 
 }
-Monster::Monster(float p_x, float p_y, Texture& texture)
+Monster::Monster(float p_x, float p_y, Texture& texture, Player* p_player)
 {
-    std::cout << "monster" << std::endl;
+    pPlayer = p_player;
     monster_position.x = p_x;
     monster_position.y = p_y;
     monster_shape.setPosition(p_x, p_y);
@@ -19,6 +20,7 @@ Monster::Monster(float p_x, float p_y, Texture& texture)
     sprite.setTexture(texture);
     srand(time(NULL));
 }
+
 
 Sprite Monster::getSprite() const
 {
@@ -43,6 +45,20 @@ double Monster::getHp()
 
 bool Monster::isDead()
 {
+    //std::cout<<dead<<std::endl;
+    return dead;
+}
+bool Monster::isGoingToBeDead()
+{
+    if(hp<=0 && !firstIsDead)
+    {
+       pPlayer->addExp(10);
+       rectSourceSprite.left = 13*32;
+       firstIsDead = 1;
+       monster_shape.setPosition(-200, -200);
+    }
+
+
     return (hp <= 0) ? 1 : 0;
 }
 
@@ -53,7 +69,9 @@ sf::CircleShape Monster::getMonsterShape() const
 
 void Monster::aggro(double deltaVx, double deltaVy)
 {
-       monsterCurrentPosition = monster_shape.getPosition();
+    if(!isGoingToBeDead())
+     {
+         monsterCurrentPosition = monster_shape.getPosition();
 
        double aggroDist;
 
@@ -91,54 +109,62 @@ void Monster::aggro(double deltaVx, double deltaVy)
        {
             if(moveTimer % 3 == 0)
             {
-                if(rectSourceSprite.left == 64)
-                    rectSourceSprite.left = 0;
+                if(rectSourceSprite.left >= 12 * 32 || rectSourceSprite.left < 10 * 32)
+                    rectSourceSprite.left = 10 * 32;
                 else
                     rectSourceSprite.left += 32;
-                rectSourceSprite.top = 32;
+                //rectSourceSprite.top = 32;
                 sprite.setTextureRect(rectSourceSprite);
             }
-       }else if(aggro_vel.x > 0)
+       }
+       else if(aggro_vel.x > 0)
         {
             if(moveTimer % 3 == 0)
             {
-                if(rectSourceSprite.left == 64)
-                    rectSourceSprite.left = 0;
+            if(rectSourceSprite.left >= 6 * 32 || rectSourceSprite.left < 4 * 32)
+                    rectSourceSprite.left = 4 * 32;
                 else
                     rectSourceSprite.left += 32;
-                rectSourceSprite.top = 64;
+                //rectSourceSprite.top = 64;
                 sprite.setTextureRect(rectSourceSprite);
             }
-       }else if( aggro_vel.y > 0)
-       {
+        }
+
+       else if( aggro_vel.y > 0)
+        {
+
            if(moveTimer % 3 == 0)
             {
-            if(rectSourceSprite.left == 64)
-               rectSourceSprite.left = 0;
+            if(rectSourceSprite.left >= 3*32)
+               rectSourceSprite.left = 1*32;
             else
                 rectSourceSprite.left += 32;
-            rectSourceSprite.top = 0;
-            sprite.setTextureRect(rectSourceSprite);
-            }
-       }else if(aggro_vel.y < 0)
-       {
-            if(moveTimer % 3 == 0)
-            {
-            if(rectSourceSprite.left == 64)
-               rectSourceSprite.left = 0;
-            else
-                rectSourceSprite.left += 32;
-            rectSourceSprite.top = 96;
             sprite.setTextureRect(rectSourceSprite);
             }
        }
+        else if(aggro_vel.y < 0)
+       {
+            if(moveTimer % 3 == 0)
+            {
+            if(rectSourceSprite.left >= 9*32 || rectSourceSprite.left < 7*32)
+               rectSourceSprite.left = 7*32;
+            else
+                rectSourceSprite.left += 32;
+            sprite.setTextureRect(rectSourceSprite);
+            }
+        }
        //std::cout << monsterCurrentPosition.x << std::endl;
 
 }
+}
+
+
 
 void Monster::randomWalk()
 {
-    if(!aggroState)
+    if(!isGoingToBeDead())
+
+    {if(!aggroState)
     {
     if(monsterCurrentPosition.x - monster_position.x > homeRadius)
     {
@@ -164,48 +190,51 @@ void Monster::randomWalk()
 //std::cout << monsterCurrentPosition.x << std::endl;
     if(randomWalk_vel.x < 0)
        {
+
             if(moveTimer % 3 == 0)
             {
-                if(rectSourceSprite.left == 64)
-                    rectSourceSprite.left = 0;
+                if(rectSourceSprite.left >= 12 * 32 || rectSourceSprite.left < 10 * 32)
+                    rectSourceSprite.left = 10 * 32;
                 else
                     rectSourceSprite.left += 32;
-                rectSourceSprite.top = 32;
+                //rectSourceSprite.top = 32;
                 sprite.setTextureRect(rectSourceSprite);
             }
        }else if(randomWalk_vel.x > 0)
         {
             if(moveTimer % 3 == 0)
             {
-                if(rectSourceSprite.left == 64)
-                    rectSourceSprite.left = 0;
+            if(rectSourceSprite.left >= 6 * 32 || rectSourceSprite.left < 4 * 32)
+                    rectSourceSprite.left = 4 * 32;
                 else
                     rectSourceSprite.left += 32;
-                rectSourceSprite.top = 64;
+                //rectSourceSprite.top = 64;
                 sprite.setTextureRect(rectSourceSprite);
             }
-       }else if(randomWalk_vel.y > 0)
+        }
+       else if(randomWalk_vel.y > 0)
        {
+
            if(moveTimer % 3 == 0)
             {
-            if(rectSourceSprite.left == 64)
-               rectSourceSprite.left = 0;
+            if(rectSourceSprite.left >= 3*32)
+               rectSourceSprite.left = 1*32;
             else
                 rectSourceSprite.left += 32;
-            rectSourceSprite.top = 0;
             sprite.setTextureRect(rectSourceSprite);
             }
-       }else if(randomWalk_vel.y < 0)
-       {
+       }
+       else if(randomWalk_vel.y < 0)
+        {
             if(moveTimer % 3 == 0)
             {
-            if(rectSourceSprite.left == 64)
-               rectSourceSprite.left = 0;
+            if(rectSourceSprite.left >= 9*32 || rectSourceSprite.left < 7*32)
+               rectSourceSprite.left = 7*32;
             else
                 rectSourceSprite.left += 32;
-            rectSourceSprite.top = 96;
             sprite.setTextureRect(rectSourceSprite);
             }
+        }
        }
     if(moveTimer % 60 == 0 && !aggroState)
     {
@@ -243,13 +272,14 @@ void Monster::randomWalk()
            randomWalk_vel.x = 0;
         }
     }
-    }
+
     else if(aggroState)
     {
        randomWalk_vel.y = 0;
        randomWalk_vel.x = 0;
     }
     //std::cout << randomWalk_vel.x << std::endl;
+}
 }
 
 sf::Vector2f Monster::getPosition()
@@ -260,16 +290,37 @@ sf::Vector2f Monster::getPosition()
 
 void Monster::update(double deltaVx, double deltaVy, double vx, double vy)
 {
-    moveTimer > 200 ? moveTimer = 1 : moveTimer++;
-    aggro(deltaVx, deltaVy);
-    randomWalk();
-    //std::cout << monster_position.x << std::endl;
-    monster_shape.setPosition(monsterCurrentPosition.x + randomWalk_vel.x,monsterCurrentPosition.y + randomWalk_vel.y);
-    sprite.setPosition(monsterCurrentPosition.x + randomWalk_vel.x, monsterCurrentPosition.y + randomWalk_vel.y);
+    //sf::Vector2f pos;
+    //pos = getPosition();
+    //std::cout<<pos.x<<","<<pos.y<<std::endl;
+    if(isGoingToBeDead())
+    {
+        deadTimer--;
+        if(deadTimer % 100 == 0)
+            rectSourceSprite.left += 32;
+        sprite.setTextureRect(rectSourceSprite);
+        if(deadTimer <= 0)
+            dead = 1;
 
+        //monster_shape.move(deltaVx * TILE_SIZE, deltaVy * TILE_SIZE);
+        monsterCurrentPosition.x = -200;
+        monsterCurrentPosition.y = -200;
+        monster_shape.setPosition(-200, -200);
+        sprite.move(deltaVx * TILE_SIZE, deltaVy * TILE_SIZE);
+    }
+    else
+    {
+        moveTimer > 200 ? moveTimer = 1 : moveTimer++;
+        aggro(deltaVx, deltaVy);
+        randomWalk();
+        //std::cout << monster_position.x << std::endl;
+        monster_shape.setPosition(monsterCurrentPosition.x + randomWalk_vel.x,monsterCurrentPosition.y + randomWalk_vel.y);
+        sprite.setPosition(monsterCurrentPosition.x + randomWalk_vel.x, monsterCurrentPosition.y + randomWalk_vel.y);
+
+    }
 }
 
 Monster::~Monster()
 {
-    //dtor
+    //std::cout<<"dead"<<std::endl;
 }

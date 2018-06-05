@@ -79,6 +79,7 @@ void Combat::update(double deltaVx, double deltaVy)
             }else
             projectileIterator++;
         }
+        counter = 0;
         for(fireballIterator = fireballs.begin(); fireballIterator != fireballs.end(); )
         {
             double x_dist{0}, y_dist{0};

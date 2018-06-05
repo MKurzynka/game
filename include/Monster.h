@@ -9,33 +9,40 @@
 
 using namespace sf;
 
+class Player;
+
 class Monster : public sf::Drawable
 {
     public:
         Monster();
-        Monster(float p_x, float p_y, Texture& texture);
+        Monster(float p_x, float p_y, Texture& texture, Player* p_player);
         void update(double deltaVx, double deltaVy, double vx, double vy);
         double getHp();
         Sprite getSprite() const;
         sf::CircleShape getMonsterShape() const;
         void gotDMG(double dmg);
         bool isDead();
+        bool isGoingToBeDead();
         Vector2f getPosition();
         virtual ~Monster();
 
     protected:
 
     private:
+        Player* pPlayer;
         CircleShape monster_shape;
         double hp{10};
+        bool dead{0};
+        int deadTimer{400};
         int dir{0}, h{0};
         int moveTimer{0};
-        int aggroRadius{400};
+        int aggroRadius{100};
         Texture texture;
-        IntRect rectSourceSprite{0, 0, 32, 32};
+        IntRect rectSourceSprite{32, 0, 32, 32};
         Sprite sprite{texture, rectSourceSprite};
         float monster_radius{15};
         double homeRadius{60};
+        bool firstIsDead{0};
 
         bool aggroState{0};
         bool homeComming{0};

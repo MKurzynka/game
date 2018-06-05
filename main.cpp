@@ -16,19 +16,23 @@ int main()
     TileMap tileMap;
     ObstMap obstMap;
     sf::Texture texture;
+    sf::Texture texture2;
     sf::Texture projectileTexture;
     tileMap.loadSpriteSheets("sprite_sheets/otsp_tiles_01.png");
     obstMap.loadSpriteSheets("sprite_sheets/otsp_town_02.png");
     texture.loadFromFile("sprites2.png");
+    texture2.loadFromFile("sprite_sheets/otsp_creatures_02.png");
     projectileTexture.loadFromFile("sprite_sheets/otsp_misc_01.png");
 
     tileMap.loadMapFromTxt("sprite_sheets/first_layer.txt");
     obstMap.loadMapFromTxt("sprite_sheets/second_layer.txt");
 
 //    Projectile projectile(100, 100, 1);
-     NPC npc;
-    Combat combat(npc);
     Player player(WINDOW_SIZE / 2, WINDOW_SIZE / 2, texture);
+    NPC npc(&player);
+    player.setNpc(&npc);
+    Combat combat(npc);
+
     window.setFramerateLimit(FRAME_LIMIT);
     while (window.isOpen())
     {
@@ -47,10 +51,12 @@ int main()
         //projectile.update(tileMap.getDeltaVx(), tileMap.getDeltaVy());
        window.draw(tileMap);
        //window.draw(obstMap);
-       window.draw(player);
-       window.draw(npc);
+
+
        //window.draw(projectile);
        window.draw(combat);
+       window.draw(npc);
+       window.draw(player);
 
        window.display();
         window.clear();

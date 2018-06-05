@@ -8,11 +8,14 @@
 #include <time.h>
 #include <stdlib.h>
 
+class Player;
+
 class NPC : public sf::Drawable
 {
     public:
 
         NPC();
+        NPC(Player* p_player);
         std::vector<sf::Vector2f> getPositionVector();
         std::vector<Monster> getEnemyVector();
         std::vector<Monster> enemyVector;
@@ -22,12 +25,12 @@ class NPC : public sf::Drawable
     protected:
 
     private:
-
+    Player* pPlayer;
     int hx{0}, hy{0};
     double m_deltaVx{0}, m_deltaVy{0}, m_vx{0}, m_vy{0};
     unsigned int monsterTimer{1};
     sf::Texture texture;
-
+    sf::Texture texture2;
     std::vector<sf::Vector2f> enemyPositionVector;
     void spawnMonster();
     void destroyMonster();

@@ -3,17 +3,20 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "const.h"
+#include "NPC.h"
+
 class Projectile : public sf::Drawable
 {
     public:
         Projectile();
         //Projectile(double vx, double vy, unsigned int direction, sf::Texture& texture, int attack, int speedScalar);
-        Projectile(double vx, double vy, unsigned int direction, sf::Texture& texture, int attack, int speedScalar,
+        Projectile(double vx, double vy, unsigned int direction, sf::Texture& texture, int attack, int speedScalar, float aoe,
                    int textureRow, int textureColumn, int maxTextureRow, int maxTextureColumn);
         sf::CircleShape getCirlceShape() const;
         sf::Sprite getSprite() const;
         bool isTerminated();
         double getDMG();
+        void setNpc(NPC* npc);
         sf::Vector2f getPosition();
         void setTexture(sf::Texture& texture);
         void update(double deltaVx, double deltaVy);
@@ -23,7 +26,9 @@ class Projectile : public sf::Drawable
     protected:
 
     private:
+        NPC* p_npc;
         int _attack{2};
+        float _aoe{0};
         int _textureRow{13}, _textureColumn{9}, _maxTextureRow{13}, _maxTextureColumn{11};
         unsigned int projectileTimer{1};
         unsigned int duration{0};

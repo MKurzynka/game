@@ -88,6 +88,7 @@ unsigned int TileMap::getDirection()
 }
 void TileMap::updateMap()
 {
+    //std::cout<<vx<<","<<vy<<std::endl;
     mapTimer++;
     if(mapTimer > 200)
         mapTimer = 0;

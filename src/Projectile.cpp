@@ -5,12 +5,12 @@ Projectile::Projectile()
 
 }
 
-Projectile::Projectile(double vx, double vy, unsigned int direction, sf::Texture& texture, int attack, int speedScalar,
+Projectile::Projectile(double vx, double vy, unsigned int direction, sf::Texture& texture, int attack, int speedScalar, float aoe,
                    int textureRow, int textureColumn, int maxTextureRow, int maxTextureColumn)
 {
-    std::cout << "projectile" << std::endl;
     _attack = attack;
     _speedScalar = speedScalar;
+    _aoe = aoe;
     _textureRow = textureRow;
     _textureColumn = textureColumn;
     _maxTextureRow = maxTextureRow;
@@ -76,8 +76,7 @@ double Projectile::getDMG()
 
 void Projectile::update(double deltaVx, double deltaVy)
 {
-    std::cout<<"update"<<std::endl;
-    if(duration > 90)
+    if(duration > 60)
     {
         setHit();
         duration = 0;
@@ -111,10 +110,34 @@ void Projectile::update(double deltaVx, double deltaVy)
         duration++;
     }
 }
-
+void Projectile::setNpc(NPC* npc)
+{
+    p_npc = npc;
+}
 void Projectile::setHit()
 {
     hit = 1;
+    std::vector<sf::Vector2f> enemyPositionTempVector;
+    std::vector<sf::Vector2f>::iterator enemyPositionTempVectorIterator;
+    enemyPositionTempVector = p_npc->getPositionVector();
+    int counterPos = 0;
+    for(enemyPositionTempVectorIterator = enemyPositionTempVector.begin(); enemyPositionTempVectorIterator != enemyPositionTempVector.end();)
+    {
+        double x_dist{0}, y_dist{0};
+        sf::Vector2f projectilePosition;
+        projectilePosition = getPosition();
+        x_dist = fabs(projectilePosition.x - enemyPositionTempVector[counterPos].x);
+        y_dist = fabs(projectilePosition.y - enemyPositionTempVector[counterPos].y);
+        if(sqrt(x_dist * x_dist + y_dist * y_dist) < _aoe)
+            {
+                p_npc->enemyVector[counterPos].gotDMG(getDMG());
+
+            }
+        counterPos++;
+        enemyPositionTempVectorIterator++;
+    }
+
+
     rectSourceSprite.left = 0;
     sprite.setTextureRect(rectSourceSprite);
     projectileTimer = 0;

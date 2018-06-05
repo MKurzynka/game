@@ -3,6 +3,14 @@
 NPC::NPC()
 {
     texture.loadFromFile("sprites2.png");
+     texture2.loadFromFile("sprite_sheets/otsp_creatures_02.png");
+    srand(time(NULL));
+}
+NPC::NPC(Player* p_player)
+{
+    pPlayer = p_player;
+    texture.loadFromFile("sprites2.png");
+     texture2.loadFromFile("sprite_sheets/otsp_creatures_02.png");
     srand(time(NULL));
 }
 
@@ -37,11 +45,11 @@ void NPC::update(double deltaVx, double deltaVy, double vx, double vy)
     if(monsterTimer >= 1000)
         monsterTimer = 1;
 
-    if(!(monsterTimer % 50) && enemyVector.size() < 2)
+    if(!(monsterTimer % SPAWN_TIME_OF_BUG_MONSTERS) && enemyVector.size() < NUMBER_OF_BUG_MONSTERS)
     {
-        hx = rand() % 100;
-        hy = rand() % 100;
-        Monster monster(hx, hy, texture);
+        hx = (rand() % BUG_MONSTER_X) + BUG_MONSTER_AREA_X + vx * TILE_SIZE;
+        hy = (rand() % BUG_MONSTER_Y) + BUG_MONSTER_AREA_Y + vy * TILE_SIZE;
+        Monster monster(hx, hy, texture2, pPlayer);
         enemyVector.push_back(monster);
         enemyPositionVector.push_back(monster.getPosition());
     }

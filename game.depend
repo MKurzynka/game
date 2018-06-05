@@ -1,8 +1,15 @@
 # depslib dependency file v1.0
-1527037085 source:c:\users\kurzy\desktop\infa\game\game\main.cpp
+1528239305 source:c:\users\kurzy\documents\github\game\main.cpp
 	<SFML/Graphics.hpp>
+	<iostream>
 	"TileMap.h"
 	"Player.h"
+	"Monster.h"
+	"const.h"
+	"NPC.h"
+	"ObstMap.h"
+	"Projectile.h"
+	"Combat.h"
 
 1523667740 c:\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -413,101 +420,6 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1527035709 c:\users\kurzy\desktop\infa\game\game\include\tilemap.h
-	<fstream>
-	<string>
-	<SFML/Graphics.hpp>
-	<vector>
-
-1527035881 source:c:\users\kurzy\desktop\infa\game\game\src\tilemap.cpp
-	"TileMap.h"
-	<fstream>
-	<iostream>
-	<string>
-
-1527157900 source:c:\users\kurzy\desktop\infa\game\game\src\player.cpp
-	"Player.h"
-	<iostream>
-
-1527036883 c:\users\kurzy\desktop\infa\game\game\include\player.h
-	<SFML/Graphics.hpp>
-
-1527881936 source:c:\users\kurzy\documents\github\rpg_game\main.cpp
-	<SFML/Graphics.hpp>
-	<iostream>
-	"TileMap.h"
-	"Player.h"
-	"Monster.h"
-	"const.h"
-	"NPC.h"
-	"ObstMap.h"
-
-1527877941 c:\users\kurzy\documents\github\rpg_game\include\tilemap.h
-	<fstream>
-	<string>
-	<SFML/Graphics.hpp>
-	<vector>
-	"const.h"
-
-1527614299 c:\users\kurzy\documents\github\rpg_game\include\player.h
-	<SFML/Graphics.hpp>
-	"const.h"
-
-1527602290 source:c:\users\kurzy\documents\github\rpg_game\src\player.cpp
-	"Player.h"
-	<iostream>
-
-1527877921 source:c:\users\kurzy\documents\github\rpg_game\src\tilemap.cpp
-	"TileMap.h"
-	<fstream>
-	<iostream>
-	<string>
-
-1527629605 source:c:\users\kurzy\documents\github\rpg_game\src\monster.cpp
-	"Monster.h"
-	<iostream>
-
-1527631545 c:\users\kurzy\documents\github\rpg_game\include\monster.h
-	<math.h>
-	<time.h>
-	<stdlib.h>
-	<SFML/Graphics.hpp>
-	<TileMap.h>
-	"const.h"
-
-1527889156 c:\users\kurzy\documents\github\rpg_game\include\const.h
-
-1527631468 source:c:\users\kurzy\documents\github\rpg_game\src\npc.cpp
-	"NPC.h"
-
-1527631423 c:\users\kurzy\documents\github\rpg_game\include\npc.h
-	<vector>
-	<Monster.h>
-
-1527631490 source:c:\users\kurzy\documents\github\rpg_game\src\peasant.cpp
-	"Peasant.h"
-
-1527631581 c:\users\kurzy\documents\github\rpg_game\include\peasant.h
-
-1527882125 source:c:\users\kurzy\documents\github\rpg_game\src\obstmap.cpp
-	"ObstMap.h"
-
-1527879689 c:\users\kurzy\documents\github\rpg_game\include\obstmap.h
-	"TileMap.h"
-	<iostream>
-
-1528155016 source:c:\users\kurzy\documents\github\game\main.cpp
-	<SFML/Graphics.hpp>
-	<iostream>
-	"TileMap.h"
-	"Player.h"
-	"Monster.h"
-	"const.h"
-	"NPC.h"
-	"ObstMap.h"
-	"Projectile.h"
-	"Combat.h"
-
 1528029057 c:\users\kurzy\documents\github\game\include\tilemap.h
 	<fstream>
 	<string>
@@ -515,24 +427,26 @@
 	<vector>
 	"const.h"
 
-1528155498 c:\users\kurzy\documents\github\game\include\const.h
+1528239877 c:\users\kurzy\documents\github\game\include\const.h
 
-1528065864 c:\users\kurzy\documents\github\game\include\player.h
+1528239187 c:\users\kurzy\documents\github\game\include\player.h
 	<SFML/Graphics.hpp>
 	"const.h"
 	<iostream>
 	"Combat.h"
 	"Projectile.h"
-
-1528054003 c:\users\kurzy\documents\github\game\include\monster.h
 	<math.h>
-	<time.h>
-	<stdlib.h>
-	<SFML/Graphics.hpp>
-	<TileMap.h>
-	"const.h"
+	"NPC.h"
 
-1528053871 c:\users\kurzy\documents\github\game\include\npc.h
+1528233899 c:\users\kurzy\documents\github\game\include\combat.h
+	<math.h>
+	<vector>
+	"NPC.h"
+	"Projectile.h"
+	"Fireball.h"
+	"Monster.h"
+
+1528233976 c:\users\kurzy\documents\github\game\include\npc.h
 	<vector>
 	<Monster.h>
 	<SFML/Graphics.hpp>
@@ -541,15 +455,40 @@
 	<time.h>
 	<stdlib.h>
 
+1528234847 c:\users\kurzy\documents\github\game\include\monster.h
+	<math.h>
+	<time.h>
+	<stdlib.h>
+	<SFML/Graphics.hpp>
+	<TileMap.h>
+	"const.h"
+
+1528239943 c:\users\kurzy\documents\github\game\include\projectile.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"const.h"
+	"NPC.h"
+
+1528240080 c:\users\kurzy\documents\github\game\include\fireball.h
+	"Projectile.h"
+
 1527879689 c:\users\kurzy\documents\github\game\include\obstmap.h
 	"TileMap.h"
 	<iostream>
 
-1528052045 source:c:\users\kurzy\documents\github\game\src\monster.cpp
-	"Monster.h"
-	<iostream>
+1528237774 source:c:\users\kurzy\documents\github\game\src\combat.cpp
+	"Combat.h"
 
-1528154857 source:c:\users\kurzy\documents\github\game\src\npc.cpp
+1528240104 source:c:\users\kurzy\documents\github\game\src\fireball.cpp
+	"Fireball.h"
+
+1528150580 source:c:\users\kurzy\documents\github\game\src\iceball.cpp
+	"Iceball.h"
+
+1528150580 c:\users\kurzy\documents\github\game\include\iceball.h
+	"Projectile.h"
+
+1528234084 source:c:\users\kurzy\documents\github\game\src\npc.cpp
 	"NPC.h"
 
 1527882125 source:c:\users\kurzy\documents\github\game\src\obstmap.cpp
@@ -560,43 +499,20 @@
 
 1527631581 c:\users\kurzy\documents\github\game\include\peasant.h
 
-1528156757 source:c:\users\kurzy\documents\github\game\src\player.cpp
+1528240133 source:c:\users\kurzy\documents\github\game\src\player.cpp
 	"Player.h"
 
-1528029081 source:c:\users\kurzy\documents\github\game\src\tilemap.cpp
+1528239963 source:c:\users\kurzy\documents\github\game\src\projectile.cpp
+	"Projectile.h"
+
+1528235263 source:c:\users\kurzy\documents\github\game\src\tilemap.cpp
 	"TileMap.h"
 	<fstream>
 	<iostream>
 	<string>
 
-1528156844 source:c:\users\kurzy\documents\github\game\src\projectile.cpp
-	"Projectile.h"
-
-1528156667 c:\users\kurzy\documents\github\game\include\projectile.h
-	<SFML/Graphics.hpp>
-	<iostream>
-	"const.h"
-
-1528156119 source:c:\users\kurzy\documents\github\game\src\combat.cpp
-	"Combat.h"
-
-1528065768 c:\users\kurzy\documents\github\game\include\combat.h
-	<math.h>
-	<vector>
-	"NPC.h"
-	"Projectile.h"
-	"Fireball.h"
+1528235246 source:c:\users\kurzy\documents\github\game\src\monster.cpp
 	"Monster.h"
-
-1528156502 source:c:\users\kurzy\documents\github\game\src\fireball.cpp
-	"Fireball.h"
-
-1528156522 c:\users\kurzy\documents\github\game\include\fireball.h
-	"Projectile.h"
-
-1528150580 source:c:\users\kurzy\documents\github\game\src\iceball.cpp
-	"Iceball.h"
-
-1528150580 c:\users\kurzy\documents\github\game\include\iceball.h
-	"Projectile.h"
+	<iostream>
+	"Player.h"
 

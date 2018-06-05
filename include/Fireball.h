@@ -6,7 +6,7 @@ class Fireball : public Projectile
 {
     public:
         Fireball();
-        Fireball(double vx, double vy, unsigned int direction, sf::Texture& texture, int attack, int speedScalar,
+        Fireball(double vx, double vy, unsigned int direction, sf::Texture& texture, int attack, int speedScalar, float aoe,
                  int textureRow, int textureColumn, int maxTextureRow, int maxTextureColumn);
         virtual ~Fireball();
 
